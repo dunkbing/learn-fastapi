@@ -26,6 +26,9 @@ class UserCreate(UserBase):
     password: str
 
 
+UserLogin = UserCreate
+
+
 class User(UserBase):
     id: int
     is_active: bool
@@ -33,3 +36,16 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+class UserInDb(UserBase):
+    hashed_password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    email: str = None

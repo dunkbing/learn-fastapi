@@ -10,7 +10,7 @@ def get_items(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user_item(db: Session, item: models.ItemCreate):
-    db_user = user_services.get_user(db, item.owner_id)
+    db_user = user_services.get_user_by_id(db, item.owner_id)
     if db_user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
