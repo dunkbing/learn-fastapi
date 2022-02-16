@@ -67,12 +67,6 @@ async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-@user_router.get("", response_model=list[User])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = services.get_users(db, skip, limit)
-    return users
-
-
 @user_router.get("/{user_id}", response_model=User)
 def read_user(user_id: int, db: Session = Depends(get_db)):
     db_user = services.get_user_by_id(db, user_id)

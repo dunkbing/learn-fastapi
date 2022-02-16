@@ -38,10 +38,6 @@ class User(UserBase):
         orm_mode = True
 
 
-class UserInDb(UserBase):
-    hashed_password: str
-
-
 class Token(BaseModel):
     access_token: str
     token_type: str
