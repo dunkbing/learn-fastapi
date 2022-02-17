@@ -7,10 +7,11 @@ name = "pypi"
 fastapi = "*"
 sqlalchemy = "*"
 uvicorn = "*"
-pydantic = "*"
+pydantic = {extras = ["dotenv"], version = "*"}
 python-jose = {extras = ["cryptography"], version = "*"}
 passlib = {extras = ["bcrypt"], version = "*"}
 python-multipart = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 autopep8 = "*"
