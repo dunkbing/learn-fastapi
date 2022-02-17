@@ -12,12 +12,15 @@ python-jose = {extras = ["cryptography"], version = "*"}
 passlib = {extras = ["bcrypt"], version = "*"}
 python-multipart = "*"
 psycopg2-binary = "*"
+sqlalchemy-filters = "*"
+sqlalchemy-searchable = "*"
 
 [dev-packages]
 autopep8 = "*"
 pytest = "*"
 requests = "*"
 factory-boy = "*"
+alembic = "*"
 
 [requires]
 python_version = "3.9"
