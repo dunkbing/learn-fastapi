@@ -36,3 +36,7 @@ class Item(ItemBase):
 
     class Config:
         orm_mode = True
+
+
+class ItemFilter(BaseModel):
+    title: str

@@ -5,8 +5,17 @@ from api.user import services as user_services
 from . import models
 
 
-def get_items(db: Session, skip: int = 0, limit: int = 100):
+def get_item_by_id(db: Session, item_id: int):
+    return db.query(models.ItemModel).filter(models.ItemModel.id == item_id).first()
+
+
+def get_item_by_user_id(db: Session, user_id: int, skip: int = 0, limit: int = 10):
+    return db.query(models.ItemModel).filter(models.ItemModel.owner_id == user_id).offset(skip).limit(limit).all()
+
+
+def get_items(db: Session, item_filter: models.ItemFilter, skip: int = 0, limit: int = 100):
     return db.query(models.ItemModel).offset(skip).limit(limit).all()
+    # query = db.query(models.ItemModel)
 
 
 def create_user_item(db: Session, item: models.ItemCreate):
