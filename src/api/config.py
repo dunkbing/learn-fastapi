@@ -12,9 +12,14 @@ class Settings(BaseSettings):
     redis_host: str
     redis_password: str
     redis_port: int
+    aws_access_key_id: str
+    aws_secret_access_key: str
+    aws_region: str
+    s3_bucket: str
 
     class Config:
         env_file = ".env"
 
 
 settings = Settings()
+print(settings.dict())

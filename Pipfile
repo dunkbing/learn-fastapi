@@ -14,6 +14,7 @@ python-multipart = "*"
 psycopg2-binary = "*"
 sqlalchemy-filters = "*"
 sqlalchemy-searchable = "*"
+boto3 = "*"
 
 [dev-packages]
 autopep8 = "*"

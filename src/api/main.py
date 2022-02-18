@@ -3,6 +3,7 @@ import time
 from .database import Base, engine
 from .user import views as user_views
 from .item import views as item_views
+from .image import views as image_views
 
 app = FastAPI()
 
@@ -19,6 +20,7 @@ async def add_process_time_header(request: Request, call_next):
 
 app.include_router(user_views.user_router, prefix='/users', tags=['users'])
 app.include_router(item_views.item_router, prefix='/items', tags=['items'])
+app.include_router(image_views.image_router, prefix='/images', tags=['images'])
 
 
 @app.get("/")
