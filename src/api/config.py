@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     aws_secret_access_key: str
     aws_region: str
     s3_bucket: str
+    sentry_dsn: str
 
     class Config:
         env_file = ".env"

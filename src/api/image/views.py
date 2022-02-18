@@ -8,7 +8,7 @@ image_router = APIRouter()
 
 
 @image_router.post("upload")
-def upload_image_of_track_to_s3(file: UploadFile = File(...), db: Session = Depends(get_db)):
+def upload_image(file: UploadFile = File(...), db: Session = Depends(get_db)):
     s3_utils.validate_format_image_file(file)
     bucket = settings.s3_bucket
     dir_file_name = f"image/{file.filename}"
