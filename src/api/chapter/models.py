@@ -21,8 +21,17 @@ class ChapterModel(Base, TimeStampMixin):
     link: Column[Text] = Column(String, index=True)
     volume: Column[int] = Column(Integer, nullable=False)
     number: Column[int] = Column(Integer, nullable=False)
-    manga_id: Column[int] = Column(Integer, ForeignKey("users.id"))
+    manga_id: Column[int] = Column(Integer, ForeignKey("mangas.id"))
 
     manga = relationship("MangaModel", back_populates="chapters")
-    chapter_images = relationship(
+    images = relationship(
         "ChapterImageModel", back_populates="chapter")
+
+
+class Chapter(BaseModel):
+    id: int
+    title: str
+    link: str
+    volume: int
+    number: int
+    manga_id: int

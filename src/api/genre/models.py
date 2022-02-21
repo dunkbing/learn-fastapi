@@ -12,3 +12,8 @@ class GenreModel(Base, TimeStampMixin):
     id: Column[int] = Column(Integer, primary_key=True,
                              autoincrement=True, index=True)
     name: Column[Text] = Column(Text, index=True)
+
+
+class Genre(BaseModel):
+    id: int
+    name: str

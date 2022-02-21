@@ -4,10 +4,10 @@ from sqlalchemy import Column, DateTime, event
 
 class TimeStampMixin(object):
 
-    create_time = Column(
+    created_time = Column(
         DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
-    update_time = Column(
+    updated_time = Column(
         DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 

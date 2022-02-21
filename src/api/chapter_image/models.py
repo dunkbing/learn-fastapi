@@ -16,3 +16,10 @@ class ChapterImageModel(Base, TimeStampMixin):
     chapter_id: Column[int] = Column(Integer, ForeignKey("chapters.id"))
 
     chapter = relationship("ChapterModel", back_populates="images")
+
+
+class ChapterImage(BaseModel):
+    id: int
+    image_url: str
+    number: int
+    chapter_id: int

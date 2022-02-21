@@ -17,14 +17,14 @@ class MangaStatus(enum.Enum):
 manga_author_table = Table(
     'mangas_authors',
     Base.metadata,
-    Column('manga_id', Integer, ForeignKey('manga.id'), primary_key=True),
-    Column('author_id', Integer, ForeignKey('author.id'), primary_key=True))
+    Column('manga_id', Integer, ForeignKey('mangas.id'), primary_key=True),
+    Column('author_id', Integer, ForeignKey('authors.id'), primary_key=True))
 
 manga_genre_table = Table(
     'mangas_genres',
     Base.metadata,
-    Column('manga_id', Integer, ForeignKey('manga.id'), primary_key=True),
-    Column('genre_id', Integer, ForeignKey('genre.id'), primary_key=True))
+    Column('manga_id', Integer, ForeignKey('mangas.id'), primary_key=True),
+    Column('genre_id', Integer, ForeignKey('genres.id'), primary_key=True))
 
 
 class MangaModel(Base, TimeStampMixin):
@@ -52,3 +52,24 @@ class MangaModel(Base, TimeStampMixin):
         "GenreModel", secondary=manga_genre_table, backref="mangas")
 
     search_vector = Column(TSVectorType("title", "alt_title"))
+
+
+class Manga(BaseModel):
+    title: str
+    alt_title: str = None
+    rating: Decimal = None
+    thumbnail: str = None
+    image: str = None
+    description: str = None
+    source: str = None
+    source_url: str = None
+    status: MangaStatus = None
+    year: int = None
+    updated_detail: str = None
+    updated_chapters: str = None
+    author_id: int
+    genre_id: int
+
+
+class MangaCreate(Manga):
+    pass
