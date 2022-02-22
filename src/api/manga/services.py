@@ -21,7 +21,7 @@ def create_manga(db: Session, manga_create: models.MangaCreate):
     db.add(db_manga)
     db.commit()
     db.refresh(db_manga)
-    return db_manga
+    return db_manga.__dict__
 
 
 def get_manga_by_id(db: Session, manga_id: int):

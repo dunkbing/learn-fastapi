@@ -6,10 +6,10 @@ from sqlalchemy_utils.types import TSVectorType
 from pydantic import BaseModel
 
 from api.database import Base
-from api.models import TimeStampMixin
+from api.models import CamelModel, TimeStampMixin
 
 
-class MangaStatus(enum.Enum):
+class MangaStatus(enum.IntEnum):
     ongoing = 0
     completed = 1
 
@@ -43,7 +43,7 @@ class MangaModel(Base, TimeStampMixin):
     status = Column(Enum(MangaStatus), nullable=True)
     year: Column[int] = Column(Integer, nullable=True)
     updated_detail: Column[Text] = Column(Text, nullable=True)
-    updated_chapters: Column[Text] = Column(Integer, nullable=True)
+    updated_chapters: Column[Text] = Column(Text, nullable=True)
 
     chapters = relationship("ChapterModel", back_populates="manga")
     authors = relationship(
@@ -54,7 +54,7 @@ class MangaModel(Base, TimeStampMixin):
     search_vector = Column(TSVectorType("title", "alt_title"))
 
 
-class Manga(BaseModel):
+class MangaBase(CamelModel):
     title: str
     alt_title: str = None
     rating: Decimal = None
@@ -67,9 +67,11 @@ class Manga(BaseModel):
     year: int = None
     updated_detail: str = None
     updated_chapters: str = None
-    author_id: int
-    genre_id: int
 
 
-class MangaCreate(Manga):
+class MangaResponse(MangaBase):
+    id: int
+
+
+class MangaCreate(MangaBase):
     pass
